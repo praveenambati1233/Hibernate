@@ -1,10 +1,16 @@
 Hibernate :
 
 - Hibernate is ORM Tool.
+
+![](https://raw.githubusercontent.com/praveenambati1233/Hibernate/master/orm.png)
+
 - Used in data layer of applications
 - ** what is JPA.** 
 A JPA (Java Persistence API) is a specification of Java which is used to access, manage, and persist data between Java object and relational database. It is considered as a standard approach for Object Relational Mapping.
 JPA can be seen as a bridge between object-oriented domain models and relational database systems. Being a specification, JPA doesn't perform any operation by itself. Thus, it requires implementation. So, ORM tools like Hibernate, TopLink, and iBatis implements JPA specifications for data persistence.
+
+
+![](https://raw.githubusercontent.com/praveenambati1233/Hibernate/master/hibernate_arch.PNG)
 
 class corresponds to a **Table**
 object of an class corresponds to a **Table Row**
