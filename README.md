@@ -1,8 +1,74 @@
 Hibernate :
 
-**Hibernate is ORM Tool.**
-**Used in data layer of applications**
-**Implemtents JPA.** -  A JPA (Java Persistence API) is a specification of Java which is used to access, manage, and persist data between Java object and relational database. It is considered as a standard approach for Object Relational Mapping.
-
+- Hibernate is ORM Tool.
+- Used in data layer of applications
+- ** what is JPA.** 
+A JPA (Java Persistence API) is a specification of Java which is used to access, manage, and persist data between Java object and relational database. It is considered as a standard approach for Object Relational Mapping.
 JPA can be seen as a bridge between object-oriented domain models and relational database systems. Being a specification, JPA doesn't perform any operation by itself. Thus, it requires implementation. So, ORM tools like Hibernate, TopLink, and iBatis implements JPA specifications for data persistence.
+
+class corresponds to a **Table**
+object of an class corresponds to a **Table Row**
+
+Pain points : 
+- **Mapping members variable to columns **
+
+	**JDBC** - we need to write a code to map the object model's data representation to a relational model and its corresponding schema. 
+	**Hibernate** - Hibernate itself maps java classes and database tables using xml and by annotations.
+	
+	
+```java
+	//JDBC
+List<User> users=new ArrayList<User>();
+while(rs.next()) {
+     User user = new User();
+     user.setUserId(rs.getString("UserId"));
+     user.setName(rs.getString("FirstName"));
+     user.setEmail(rs.getString(“Email”));
+     users.add(user);
+ }
+```
+
+```java
+//Hibernate
+@Entity
+@Table(name = "user")
+public class UserModel {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private BigInteger id;
+    @NotEmpty
+    @Column(name = "email", unique = true)
+    private String email;
+    @NotEmpty
+    @Column(name = "name")
+    private String name;
+    public BigInteger getId() {
+        return this.id;
+    }
+    public void setId(BigInteger id) {
+        this.id = id;
+    }
+    public String getEmail() {
+        return email;
+    }
+    public void setEmail(String email) {
+        this.email = email;
+    }
+    public String getName() {
+        return this.name;
+    }
+    public void setName(String name) {
+        this.name = name;
+    }
+}
+```
+In the above example, you can see that by using JDBC, you need to set every property of an object upon fetching the data each and every time. But in Hibernate, we need to **map the table with the Java class** as mentioned above.
+
+Hibernate uses HQL (Hibernate Query Language), which is similar to SQL, but Hibernate’s HQL provides full support for polymorphic queries. HQL understands object-oriented concepts like inheritance, polymorphism, and association. For a detailed understanding of polymorphic HQL queries, refer to this https://www.roseindia.net/hibernate/hibernate4/hibernatePolymorphicQueries.shtml.
+
+
+
+- Mapping relationships ( Primary key and Foreign key )
+- Handling data types 
+- Managing changes to object state.
 
