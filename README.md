@@ -85,3 +85,34 @@ Hibernate uses HQL (Hibernate Query Language), which is similar to SQL, but Hibe
 - Handling data types 
 - Managing changes to object state.
 
+
+
+------------
+
+SQL script :
+
+```sql
+CREATE TABLE student (
+  id Number(19,0),
+  first_name varchar(45) DEFAULT NULL,
+  last_name varchar(45) DEFAULT NULL,
+  email varchar(45) DEFAULT NULL,
+  PRIMARY KEY (id)
+);
+
+CREATE SEQUENCE student_sequence;
+
+drop trigger student_on_insert;
+ 
+CREATE OR REPLACE TRIGGER student_on_insert
+  BEFORE INSERT ON student
+  FOR EACH ROW
+BEGIN
+  SELECT student_sequence.nextval
+  INTO :new.id
+  FROM dual;
+END;
+
+insert into student (first_name,last_name,email) values ('pravdeen','ambdati','pradveen.ambat@gmail.com');
+select * from student;
+```
