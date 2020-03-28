@@ -138,8 +138,8 @@ Create Session Factor
 |   sno| Annotation  | Description   |
 | ------------ | ------------ | ------------ |
 |  1 | @id  | Primary Key for the class  |
-|  2 | @Table  |  Annotate when your table is different in DB . Eg : `@Table(name="student_data")`	 |
-|  3 |  @GeneratedValue *( field level)* @GenericGenerator *( class level - mostly used)*| By Default Hibernate use **Appropriate strategy** for the given DB. we can explict add the Generation strategy using annotation @GeneratedValue or @GenericGenerator with our sequence created in the master_sql file.  Eg -  `@GenericGenerator(name = "SequenceGenerator", strategy = "native", parameters = { @Parameter(name = "sequence", value = "STUDENT_SEQUENCE") })`. For My SQL : `@GeneratedValue(strategy = GenerationType.IDENTITY)`  |
+|  2 | @Table  |  Use this annotate when your table name is different in DB . Eg : `@Table(name="student_data")`	 |
+|  3 |  @GeneratedValue *( field level)* @GenericGenerator *( class level - mostly used)*| By Default Hibernate use **Appropriate strategy** - `@GeneratedValue(strategy = GenerationType.AUTO)`  for the given DB. we can explict add the Generation strategy using annotation @GeneratedValue or use @GenericGenerator for  custom sequence created in the master_sql file.  Eg -  `@GenericGenerator(name = "SequenceGenerator", strategy = "native", parameters = { @Parameter(name = "sequence", value = "STUDENT_SEQUENCE") })`. For My SQL : `@GeneratedValue(strategy = GenerationType.IDENTITY)`  |
 |   |   |   |
 |   |   |   |
 |   |   |   |
