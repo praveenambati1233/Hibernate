@@ -129,3 +129,16 @@ select * from student;
 - Main object to save / retrieve objects.
 - short - lived object
 - retrieved from SessionFactor.
+
+
+
+|   sno| Annotation  | Description   |
+| ------------ | ------------ | ------------ |
+|  1 | @id  | Primary Key for the class  |
+|  2 | @Table  |  |
+|  3 |  @GeneratedValue *( field level)* @GenericGenerator *( class level - mostly used)*| By Default Hibernate use **Appropriate strategy** for the given DB. we can explict add the Generation strategy using annotation @GeneratedValue or @GenericGenerator with our sequence created in the master_sql file.  Eg -  `@GenericGenerator(name = "SequenceGenerator", strategy = "native", parameters = { @Parameter(name = "sequence", value = "STUDENT_SEQUENCE") })` |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
+|   |   |   |
