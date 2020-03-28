@@ -130,15 +130,59 @@ select * from student;
 - short - lived object
 - retrieved from SessionFactor.
 
+Hibernate Program : 
+
+Create Session Factor
 
 
 |   sno| Annotation  | Description   |
 | ------------ | ------------ | ------------ |
 |  1 | @id  | Primary Key for the class  |
-|  2 | @Table  |  |
-|  3 |  @GeneratedValue *( field level)* @GenericGenerator *( class level - mostly used)*| By Default Hibernate use **Appropriate strategy** for the given DB. we can explict add the Generation strategy using annotation @GeneratedValue or @GenericGenerator with our sequence created in the master_sql file.  Eg -  `@GenericGenerator(name = "SequenceGenerator", strategy = "native", parameters = { @Parameter(name = "sequence", value = "STUDENT_SEQUENCE") })` |
+|  2 | @Table  |  Annotate when your table is different in DB . Eg : `@Table(name="student_data")`	 |
+|  3 |  @GeneratedValue *( field level)* @GenericGenerator *( class level - mostly used)*| By Default Hibernate use **Appropriate strategy** for the given DB. we can explict add the Generation strategy using annotation @GeneratedValue or @GenericGenerator with our sequence created in the master_sql file.  Eg -  `@GenericGenerator(name = "SequenceGenerator", strategy = "native", parameters = { @Parameter(name = "sequence", value = "STUDENT_SEQUENCE") })`. For My SQL : `@GeneratedValue(strategy = GenerationType.IDENTITY)`  |
 |   |   |   |
 |   |   |   |
 |   |   |   |
 |   |   |   |
 |   |   |   |
+
+
+**Dealing with Dates **
+
+DB Model : varchar2(255)
+
+Java code : 
+
+`import org.joda.time.LocalDate;`
+
+    @Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate", parameters = {@Parameter(name = "databaseZone", value = "jvm"), @Parameter(name = "javaZone", value = "jvm") })
+    private LocalDate dateOfAgencyAuthorization = null;
+
+
+DB Model : 
+
+```sql
+create table PORTING_INFO_REPORT (
+ .........
+  ORDER_DUE_DATE date,
+  EXPECTED_COMPLETION_DATE timestamp,
+  ......
+ );
+```
+
+
+```sql
+import org.joda.time.LocalDate;
+import org.joda.time.LocalDateTime;
+
+@Column(name="ORDER_DUE_DATE")
+@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDate", parameters = { @Parameter(name = "databaseZone", value = "jvm"),
+@Parameter(name = "javaZone", value = "jvm") })
+private LocalDate orderDueDate; 
+
+@Column(name="EXPECTED_COMPLETION_DATE")
+	@Type(type = "org.jadira.usertype.dateandtime.joda.PersistentLocalDateTime", parameters = {
+    @Parameter(name = "databaseZone", value = "jvm"), @Parameter(name = "javaZone", value = "jvm") })
+	private LocalDateTime expectedCompletionDate;
+
+```
