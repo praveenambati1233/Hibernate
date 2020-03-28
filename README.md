@@ -116,3 +116,16 @@ END;
 insert into student (first_name,last_name,email) values ('pravdeen','ambdati','pradveen.ambat@gmail.com');
 select * from student;
 ```
+
+
+**sessionFactory **
+- Reads the hiberanate configuration file
+- creates session factory objects
+- Heavy weight object
+- only creates once in 
+
+**session**
+- wraps JDBC connection
+- Main object to save / retrieve objects.
+- short - lived object
+- retrieved from SessionFactor.
