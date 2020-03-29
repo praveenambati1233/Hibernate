@@ -127,21 +127,28 @@ CREATE SEQUENCE student_sequence
 - short - lived object
 - retrieved from SessionFactor.
 
-Hibernate Program : 
+HQL 
 
-Create Session Factor
+
 
 
 |   sno| Annotation  | Description   |
 | ------------ | ------------ | ------------ |
 |  1 | @id  | Primary Key for the class  |
 |  2 | @Table  |  Use this annotate when your table name is different in DB . Eg : `@Table(name="student_data")`	 |
-|  3 |  @GeneratedValue *( field level)* @GenericGenerator *( class level - mostly used)*| By Default Hibernate use **Appropriate strategy** - `@GeneratedValue(strategy = GenerationType.AUTO)` or for the given DB. we can explict add the Generation strategy using annotation @GeneratedValue or use @GenericGenerator for  custom sequence created in the master_sql file.  Eg -  `@GenericGenerator(name = "SequenceGenerator", strategy = "native", parameters = { @Parameter(name = "sequence", value = "STUDENT_SEQUENCE") })   &   @Id @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SequenceGenerator") private int id;  `. For My SQL : `@GeneratedValue(strategy = GenerationType.IDENTITY)`  |
+|  3 |  @GeneratedValue *( field level)* @GenericGenerator *( class level - mostly used)*| By Default Hibernate use **Appropriate strategy** - `@GeneratedValue(strategy = GenerationType.AUTO)` or for the given DB. we can explict add the Generation strategy using annotation @GeneratedValue or use @GenericGenerator for  custom sequence created in the master_sql file.  Eg -  `@GenericGenerator(name = "SequenceGenerator", strategy = "native", parameters = { @Parameter(name = "sequence", value = "STUDENT_SEQUENCE") })   &   @Id @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SequenceGenerator") private int id;  `.  |
+| 4  | @Temporal   |  used for java.util.Date  |
 |   |   |   |
 |   |   |   |
+| 7  |  @Transactional |   |
 |   |   |   |
-|   |   |   |
-|   |   |   |
+
+
+**Topics : **
+
+1. EntityManager
+2. check how TnContainerLockDaoJpa ( locking mechanism)
+
 
 
 **Dealing with Dates **
