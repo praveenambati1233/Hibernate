@@ -127,6 +127,13 @@ CREATE SEQUENCE student_sequence
 - short - lived object
 - retrieved from SessionFactor.
 
+**Cascade ** 
+- Applying same operation to related entities.
+
+**Fetch Type :  Eagar vs Lazy**
+1. Eagar : Retrieve everything
+2. Lazy   : Retrieve on request
+
 HQL 
 
 
@@ -153,8 +160,10 @@ HQL
 
 **Dealing with Dates **
 
-DB Model : varchar2(255)
+*Simple date :*
+https://www.udemy.com/course/spring-hibernate-tutorial/learn/lecture/7314676#overview
 
+DB Model : varchar2(255)
 Java code : 
 
 `import org.joda.time.LocalDate;`
