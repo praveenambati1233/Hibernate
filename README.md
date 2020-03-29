@@ -134,7 +134,20 @@ CREATE SEQUENCE student_sequence
 1. Eagar : Retrieve everything
 2. Lazy   : Retrieve on request
 
+FK 
+
+The main purpose of Foreign Key is to preserve releationship between tables
+- Referential Integrity
+- Prevents operations that would destroy relationship.
+- Ensures  only valid data is inserted into the foreign key column
+- can only contain valid reference to primary key in other table.
+
 HQL 
+
+**ReleationShip **
+
+One To One 
+
 
 
 
