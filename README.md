@@ -92,6 +92,7 @@ Hibernate uses HQL (Hibernate Query Language), which is similar to SQL, but Hibe
 SQL script :
 
 ```sql
+
 CREATE TABLE student (
   id Number(19,0),
   first_name varchar(45) DEFAULT NULL,
@@ -100,21 +101,17 @@ CREATE TABLE student (
   PRIMARY KEY (id)
 );
 
-CREATE SEQUENCE student_sequence;
-
-drop trigger student_on_insert;
+CREATE SEQUENCE student_sequence
+ INCREMENT BY 1
+    START WITH 1
+    MINVALUE 0  -- This will ensure start at 1!
+    MAXVALUE 9999999
+    NOCYCLE
+    NOCACHE
+    ORDER;
+	
+	SELECT *  FROM user_sequences  WHERE sequence_name = 'STUDENT_SEQUENCE';
  
-CREATE OR REPLACE TRIGGER student_on_insert
-  BEFORE INSERT ON student
-  FOR EACH ROW
-BEGIN
-  SELECT student_sequence.nextval
-  INTO :new.id
-  FROM dual;
-END;
-
-insert into student (first_name,last_name,email) values ('pravdeen','ambdati','pradveen.ambat@gmail.com');
-select * from student;
 ```
 
 
@@ -139,7 +136,7 @@ Create Session Factor
 | ------------ | ------------ | ------------ |
 |  1 | @id  | Primary Key for the class  |
 |  2 | @Table  |  Use this annotate when your table name is different in DB . Eg : `@Table(name="student_data")`	 |
-|  3 |  @GeneratedValue *( field level)* @GenericGenerator *( class level - mostly used)*| By Default Hibernate use **Appropriate strategy** - `@GeneratedValue(strategy = GenerationType.AUTO)`  for the given DB. we can explict add the Generation strategy using annotation @GeneratedValue or use @GenericGenerator for  custom sequence created in the master_sql file.  Eg -  `@GenericGenerator(name = "SequenceGenerator", strategy = "native", parameters = { @Parameter(name = "sequence", value = "STUDENT_SEQUENCE") })`. For My SQL : `@GeneratedValue(strategy = GenerationType.IDENTITY)`  |
+|  3 |  @GeneratedValue *( field level)* @GenericGenerator *( class level - mostly used)*| By Default Hibernate use **Appropriate strategy** - `@GeneratedValue(strategy = GenerationType.AUTO)` or for the given DB. we can explict add the Generation strategy using annotation @GeneratedValue or use @GenericGenerator for  custom sequence created in the master_sql file.  Eg -  `@GenericGenerator(name = "SequenceGenerator", strategy = "native", parameters = { @Parameter(name = "sequence", value = "STUDENT_SEQUENCE") })   &   @Id @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SequenceGenerator") private int id;  `. For My SQL : `@GeneratedValue(strategy = GenerationType.IDENTITY)`  |
 |   |   |   |
 |   |   |   |
 |   |   |   |
