@@ -130,6 +130,17 @@ CREATE SEQUENCE student_sequence
 **Cascade ** 
 - Applying same operation to related entities.
 
+```java
+	@OneToOne(cascade = CascadeType.ALL)
+```
+
+if you don't want cascade delete operation for parent or child operations or vice versa
+
+```java
+@OneToOne(cascade {CascadeType.DETACH,CascadeType.MERGE,CascadeType.PERSIST, CasecadeType.REFRESH})
+```
+
+
 **Fetch Type :  Eagar vs Lazy**
 1. Eagar : Retrieve everything
 2. Lazy   : Retrieve on request
@@ -146,7 +157,53 @@ HQL
 
 **ReleationShip **
 
-One To One 
+**One To One**
+
+![](https://raw.githubusercontent.com/praveenambati1233/Hibernate/master/onetoone.PNG)
+
+Parent class :
+
+```java
+   @OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "instructor_detail_id")
+	private InstructorDetail instructorDetail;
+```
+
+call the setter function of FK data member in parent class and save the parent object using hibernate session. This is **Uni-Directional**.
+
+```java
+Instructor instructor = new Instructor("Uday", "Ambati","uday@gmail.com");
+		InstructorDetail instructorDetail = new InstructorDetail("http://www.youtube.com", "love to earn");
+		
+		// associate the objects
+		instructor.setInstructorDetail(instructorDetail);
+		
+		// save the object
+		// This will also save in InstructorDetail as CascadeType.ALL
+		session.save(instructor);
+```
+ Bi-Directional
+ 
+ Add parent class reference in child class as a data memeber 
+
+Child class :
+```java
+ // Refers to instructorDetail in Instructor entity
+	@OneToOne(mappedBy="instructorDetail",cascade = CascadeType.ALL)
+	private Instructor instructor;
+```
+Parent class :
+
+```java
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "instructor_detail_id")
+	private InstructorDetail instructorDetail;
+```
+
+
+
+
+
 
 
 
@@ -212,3 +269,4 @@ private LocalDate orderDueDate;
 	private LocalDateTime expectedCompletionDate;
 
 ```
+
