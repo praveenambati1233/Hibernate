@@ -182,11 +182,14 @@ Instructor instructor = new Instructor("Uday", "Ambati","uday@gmail.com");
 		// This will also save in InstructorDetail as CascadeType.ALL
 		session.save(instructor);
 ```
- Bi-Directional
- 
- Add parent class reference in child class as a data memeber 
 
-Child class :
+ **Bi-Directional**
+
+ Add parent class reference in child class as a data memeber and add relation ship with mappedBy = "parentDataMember" and cascade type.
+
+**mappedBy ** - Referes to the "instructorDetail" property in Instructor class.
+
+ Child class :
 ```java
  // Refers to instructorDetail in Instructor entity
 	@OneToOne(mappedBy="instructorDetail",cascade = CascadeType.ALL)
@@ -207,6 +210,7 @@ Parent class :
 
 
 
+**Annotations**
 
 
 |   sno| Annotation  | Description   |
