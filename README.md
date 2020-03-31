@@ -141,9 +141,17 @@ if you don't want cascade delete operation for parent or child operations or vic
 ```
 
 
-**Fetch Type :  Eagar vs Lazy**
-1. Eagar : Retrieve everything
-2. Lazy   : Retrieve on request
+**Fetch Type :  Eager vs Lazy**
+1. Eager : Retrieve everything
+  loads main and dependent enties day ( Performance impact ) 
+2. Lazy   : Retrieve on request 
+  lazy loading will load the main entity first 
+  load dependent entities on demand ( lazy ).
+  
+ we can specify Fetch Types in  the relation ship annotation, If we don't specify the defaults will be consider. 
+
+ends with More = FetchType.LAZY
+ends with One = FetchType.EAGER
 
 FK 
 
@@ -273,4 +281,3 @@ private LocalDate orderDueDate;
 	private LocalDateTime expectedCompletionDate;
 
 ```
-
