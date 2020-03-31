@@ -1,7 +1,6 @@
 **Persistent Data Layer**
 
 
-
 ![](https://raw.githubusercontent.com/praveenambati1233/Hibernate/master/DataLayer.PNG)
 
 For every persistent layer below would be design 
@@ -16,10 +15,10 @@ OrderDataSourceConfig  ( Table )
 
 ```
 
-create  Internface for CRUD operations 
+create  interface for CRUD operations 
 
 ```java
-OrderDataSourceConfigDao ( Interface )
+interface OrderDataSourceConfigDao ( Interface )
     boolean isInvalidServiceType(ServiceType svcType, FlowType flowType);
     boolean isGODServiceType(final ServiceType svcType, final FlowType flowType);
     OrderDataSourceConfig findBySvcTypeAndFlowType(ServiceType svcType, FlowType flowType);
@@ -60,7 +59,7 @@ OrderDataSourceConfigDaoJpa implements OrderDataSourceConfigDao
 
 ```
 
-Below snnipet code to call the DAO method
+Below snippet code to call the DAO method
 
 ```java
 OrderDataSourceConfig orderSrcConfig = this.ordDataDao.findBySvcTypeAndFlowType(svcType, FlowType.Site);
