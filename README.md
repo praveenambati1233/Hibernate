@@ -204,9 +204,9 @@ Parent class :
 ```
 
 
+**OneToMany & ManyToOne **
 
-
-
+- Do not apply cascading deletes !!
 
 
 
