@@ -163,7 +163,7 @@ The main purpose of Foreign Key is to preserve releationship between tables
 
 HQL 
 
-**ReleationShip **
+**ReleationShip**
 
 **One To One**
 
@@ -195,7 +195,7 @@ Instructor instructor = new Instructor("Uday", "Ambati","uday@gmail.com");
 
  Add parent class reference in child class as a data memeber and add relation ship with mappedBy = "parentDataMember" and cascade type.
 
-**mappedBy ** - Referes to the "instructorDetail" property in Instructor class.
+**mappedBy** - Referes to the "instructorDetail" property in Instructor class.
 
  Child class :
 ```java
@@ -212,7 +212,7 @@ Parent class :
 ```
 
 
-**OneToMany & ManyToOne **
+**OneToMany & ManyToOne**
 
 - Do not apply cascading deletes !!
 
@@ -233,14 +233,14 @@ Parent class :
 |   |   |   |
 
 
-**Topics : **
+**Topics :**
 
 1. EntityManager
 2. check how TnContainerLockDaoJpa ( locking mechanism)
 
 
 
-**Dealing with Dates **
+**Dealing with Dates**
 
 *Simple date :*
 https://www.udemy.com/course/spring-hibernate-tutorial/learn/lecture/7314676#overview
