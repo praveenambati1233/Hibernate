@@ -1,15 +1,11 @@
-
 **Persistent Data Layer **
 
 
 ![](https://raw.githubusercontent.com/praveenambati1233/Hibernate/master/DataLayer.PNG)
 
-```java
-OrderDataSourceConfig orderSrcConfig = this.ordDataDao.findBySvcTypeAndFlowType(svcType, FlowType.Site);
-orderSrcConfig.getOrderDataSource();
-```
-
 For every persistent layer below would be design 
+
+Create your model first and design your hibernate entity like below.
 
 ```java
 
@@ -17,10 +13,20 @@ For every persistent layer below would be design
 @Table(name = "ORDER_DATA_SOURCE_CONFIG")
 OrderDataSourceConfig  ( Table ) 
 
+```
+
+create  Internface for CRUD operations 
+
+```java
 OrderDataSourceConfigDao ( Interface )
     boolean isInvalidServiceType(ServiceType svcType, FlowType flowType);
     boolean isGODServiceType(final ServiceType svcType, final FlowType flowType);
     OrderDataSourceConfig findBySvcTypeAndFlowType(ServiceType svcType, FlowType flowType);
+```
+
+Implement Dao interface and write the implementation logic.
+
+```java
 
 @Repository("OrderDataSourceConfigDao")
 OrderDataSourceConfigDaoJpa implements OrderDataSourceConfigDao 
@@ -51,4 +57,11 @@ OrderDataSourceConfigDaoJpa implements OrderDataSourceConfigDao
         return CollectionUtils.isEmpty(list) ? null : list.get(0);
     }
 
+```
+
+Below snnipet code to call the DAO method
+
+```java
+OrderDataSourceConfig orderSrcConfig = this.ordDataDao.findBySvcTypeAndFlowType(svcType, FlowType.Site);
+orderSrcConfig.getOrderDataSource();
 ```
