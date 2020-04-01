@@ -227,11 +227,8 @@ Parent class :
 |  2 | @Table  |  Use this annotate when your table name is different in DB . Eg : `@Table(name="student_data")`	 |
 |  3 |  @GeneratedValue *( field level)* @GenericGenerator *( class level - mostly used)*| By Default Hibernate use **Appropriate strategy** - `@GeneratedValue(strategy = GenerationType.AUTO)` or for the given DB. we can explict add the Generation strategy using annotation @GeneratedValue or use @GenericGenerator for  custom sequence created in the master_sql file.  Eg -  `@GenericGenerator(name = "SequenceGenerator", strategy = "native", parameters = { @Parameter(name = "sequence", value = "STUDENT_SEQUENCE") })   &   @Id @GeneratedValue(strategy=GenerationType.SEQUENCE,generator="SequenceGenerator") private int id;  `.  |
 | 4  | @Temporal   |  used for java.util.Date  |
-| 5  | @Repository  | This is special annotation for DAO s Implementations classes. since this is implemented from @Component annotation it inherits all the features , hence auto-scanning or component scanning available   |
-|   |   |   |
-| 7  |  @Transactional | This is same as ```java session.beginTrasaction() ..... session.getTrasaction.commit() ``` . Generally we annotate @Transactional on the methods which does the persistent logic. **Line to code**.  
- - spring will automatically register the DAO implementations . 
- -  spring also provides translation of any JDBC related exceptions. which means if any JDBC checked exceptions thrown, spring will translate to unchecked exceptions  |
+| 5  | @Repository  | This is special annotation for DAO s Implementations classes. since this is implemented from @Component annotation it inherits all the features , hence auto-scanning or component scanning available. Spring will automatically register the DAO implementations .Spring also provides translation of any JDBC related exceptions. which means if any JDBC checked exceptions thrown, spring will translate to unchecked exceptions |
+| 7  |  @Transactional | This is same as ```java session.beginTrasaction() ..... session.getTrasaction.commit() ``` . Generally we annotate @Transactional on the methods which does the persistent logic. **Line to code**. |
 |  8 | @Service   | asdf   |
 
 
