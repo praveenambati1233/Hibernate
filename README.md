@@ -91,8 +91,7 @@ Hibernate uses HQL (Hibernate Query Language), which is similar to SQL, but Hibe
 
 **- Second Level Cache**
 
-
-
+**Life Cycle of Entity**
 
 
 ------------
@@ -250,16 +249,21 @@ Parent class :
 | 18 | @DiscriminatorValue ||
 | 19 | @Basic | |
 | 20 | @Version | |
+| 21 | @NotFound | |
+| 22 | @PersistenceContext and EntityManager | `@Repository("portingBatchJPA") @Transactional(propagation = Propagation.REQUIRED) public class PortingBatchDaoJPA implements PortingBatchDao` |
 
 
 
 **Query Language**
 - CriteriaBuilder
 - CriteriaDelete
+- CriteriaUpdate
 - Predicate
 - Root
 - Query
 - Path
+- CriteriaQuery
+- TypedQuery
 
 
 
