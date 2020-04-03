@@ -10,7 +10,7 @@
 
 - Used in data layer of applications
 -  Implements Java Persistent API 
-** what is JPA.** 
+**what is JPA.** 
 A JPA (Java Persistence API) is a specification of Java which is used to access, manage, and persist data between Java object and relational database. It is considered as a standard approach for Object Relational Mapping.
 JPA can be seen as a bridge between object-oriented domain models and relational database systems. Being a specification, JPA doesn't perform any operation by itself. Thus, it requires implementation. So, ORM tools like Hibernate, TopLink, and iBatis implements JPA specifications for data persistence.
 
@@ -22,7 +22,7 @@ class corresponds to a **Table**
 object of an class corresponds to a **Table Row**
 
 Pain points : 
-- **Mapping members variable to columns **
+- **Mapping members variable to columns**
 
 	**JDBC** - we need to write a code to map the object model's data representation to a relational model and its corresponding schema. 
 	**Hibernate** - Hibernate itself maps java classes and database tables using xml and by annotations.
@@ -123,7 +123,7 @@ CREATE SEQUENCE student_sequence
 ```
 
 
-**sessionFactory **
+**sessionFactory**
 - Reads the hiberanate configuration file
 - creates session factory objects
 - Heavy weight object
@@ -135,7 +135,7 @@ CREATE SEQUENCE student_sequence
 - short - lived object
 - retrieved from SessionFactor.
 
-**Cascade ** 
+**Cascade** 
 - Applying same operation to related entities.
 
 ```java
@@ -240,6 +240,26 @@ Parent class :
 |  8 | @Service   | Applies to service implementation classes, spring will automatically register ( component scanning - ```java  ``` )    |
 | 9 | @Transient | If you don't want save property in DataBase, annotate with @Transient on data member. Another way to is we can mention 'static' data member so hibernate ignores  |
 | 10 | @Lob | |
+| 11 | @ElementCollection | This is used for **Collection**  data type/ user defined class. Note : @ElementCollection is for mapping non-entities (embeddable or basic ) @OneToMany is for map entities. |
+| 12 | @Embedded | Object inside another object  `@Embedded private Asserts asserts;`. Another object has to annotate with `@Embeddable` |
+|13 | @CollectionTable  | Collection table is  |
+| 14 | @EntityListeners| |
+| 15 | @Enumerated | |
+| 16 | @EnumType | |
+| 17 | @Inheritance | |
+| 18 | @DiscriminatorValue ||
+| 19 | @Basic | |
+| 20 | @Version | |
+
+
+
+**Query Language**
+- CriteriaBuilder
+- CriteriaDelete
+- Predicate
+- Root
+- Query
+- Path
 
 
 
