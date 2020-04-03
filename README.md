@@ -245,12 +245,13 @@ Parent class :
 | 14 | @EntityListeners| |
 | 15 | @Enumerated | |
 | 16 | @EnumType | |
-| 17 | @Inheritance | |
-| 18 | @DiscriminatorValue ||
+| 17 | @Inheritance | This is same as OO Inheritance. Hibernate only creates  parent table with all the children enties in the table. Here blank values are the sub class data memebers / columns. By default Hibernate uses `strategy = InheritanceType.SINGLE_TABLE` |
+| 18 | @DiscriminatorColumn & @DiscriminatorValue | By default Hibernate generates **DTYPE** column name with className as value in the Inheritance. we can make it different column name and value for the **super class** and **sub class** ( Note this is only for `strategy = InheritanceType.JOINED` as Hibernate dumps everything in one table. |
 | 19 | @Basic | |
 | 20 | @Version | |
 | 21 | @NotFound | |
-| 22 | @PersistenceContext and EntityManager | `@Repository("portingBatchJPA") @Transactional(propagation = Propagation.REQUIRED) public class PortingBatchDaoJPA implements PortingBatchDao` |
+| 22 | @PersistenceContext and EntityManager | Reference code:  `@Repository("portingBatchJPA") @Transactional(propagation = Propagation.REQUIRED) public class PortingBatchDaoJPA implements PortingBatchDao` |
+| 23 | @LazyCollection| |
 
 
 
