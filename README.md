@@ -350,3 +350,9 @@ read  later
 - https://stackoverflow.com/questions/18311676/spring-hibernate-session-management-within-transactional-methods
 - https://stackoverflow.com/questions/1099025/spring-transactional-what-happens-in-background
 - https://dzone.com/articles/how-does-spring-transactional
+
+
+TODO: 
+
+findExistingTns
+findByExistingLNPIDs
