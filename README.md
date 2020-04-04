@@ -21,6 +21,11 @@ JPA can be seen as a bridge between object-oriented domain models and relational
 class corresponds to a **Table**
 object of an class corresponds to a **Table Row**
 
+
+**Hibernate States:**
+
+https://docs.jboss.org/hibernate/core/3.3/reference/en/html/objectstate.html
+
 Pain points : 
 - **Mapping members variable to columns**
 
