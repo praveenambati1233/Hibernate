@@ -224,6 +224,19 @@ Parent class :
 - Do not apply cascading deletes !!
 
 
+**Maping Inheritance** 
+
+1. SINGLE TABLE (default)
+2. JOINED 
+3. TABLE PER CLASS ( ignore )
+
+For**Single table** type Inheritance, all the child class enties are dumped into parent class table.
+
+**usecase :**  let's say you have work flows in your application where you have different flows which has to map their states, you can use SINGLE TABLE strategy.
+
+
+
+
 
 **Annotations**
 
