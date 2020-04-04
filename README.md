@@ -230,9 +230,13 @@ Parent class :
 2. JOINED 
 3. TABLE PER CLASS ( ignore )
 
-For**Single table** type Inheritance, all the child class enties are dumped into parent class table.
+For **SINGLE TABLE** type Inheritance, all the child class entities are dumped into parent class table.
+
+For **JOINED** type strategy, all the child entities will have different tables with FK and PK relationship.
 
 **usecase :**  let's say you have work flows in your application where you have different flows which has to map their states, you can use SINGLE TABLE strategy.
+
+![](https://raw.githubusercontent.com/praveenambati1233/Hibernate/master/inheritance.PNG)
 
 
 
