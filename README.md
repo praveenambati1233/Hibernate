@@ -100,6 +100,28 @@ Hibernate uses HQL (Hibernate Query Language), which is similar to SQL, but Hibe
 
 **- Second Level Cache**
 
+> SessionFactory.openSession provides caching by default, when we update object which is in persistent state, let's say we update it again, Hibernate doesn't run two update queries to the DB, Hibernate maintains first level cache which triggers one update when the object moved from persistent state to detached state ( session.save(obj) ), same goes for select operations.
+
+> the problem with the first- level cache is SessionFactory.openSession doesn't wait for longer time as it is one per enitity.
+Second Level Cache : caches objects across the sessions. If this is turned on objects are searched in cache and if not found db is queried. This cache is used when objects are loaded using their PK. When the user fetches the data from the database for the first time, the data gets stored in the Second Level Cache if it is enabled for that entity. Thereafter, whenever the user requests the data from the second level cache is returned, thus saving network traffic and a database hit.
+
+
+To enable the Second Level Cache, we use the property `hibernate.cache.use_second_level_cache` and set it to **true**
+`hibernate.cache.use_query_cacheproperty` is used to select the underlying Cache Vendor which is **EhCacheRegionFactory** in our case
+
+Annotate entity with 
+```java
+@Cacheable
+@Cache(usage = CacheConcurrencyStrategy.READ_ONLY)
+@Entity
+public class Student
+```
+
+**Query Cache**
+> When the query cache is turned on, the results of the query are stored against the combination query and parameters. Every time the query is fired the cache manager  checks for the combination of parameters and query. If the results are found in the cache, they are returned, otherwise a database transaction is initiated.  As you can see, it is not a good idea to cache a query if it has a number of parameters, because then a single parameter can take a number of values. For each of these combinations the results are stored in the memory. This  can lead to extensive memory usage.
+
+
+
 **Life Cycle of Entity**
 
 
