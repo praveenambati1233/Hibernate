@@ -98,7 +98,11 @@ Hibernate uses HQL (Hibernate Query Language), which is similar to SQL, but Hibe
 **- Dialect**
  Hibernate knows what kind of language is to use to talk to Database.
 
-**- Second Level Cache**
+**Hibernate caching** 
+
+> Session cache/First level cache: caches objects within current session and is default.
+
+**Second Level Cache**
 
 > SessionFactory.openSession provides caching by default, when we update object which is in persistent state, let's say we update it again, Hibernate doesn't run two update queries to the DB, Hibernate maintains first level cache which triggers one update when the object moved from persistent state to detached state ( session.save(obj) ), same goes for select operations.
 
@@ -106,7 +110,9 @@ Hibernate uses HQL (Hibernate Query Language), which is similar to SQL, but Hibe
 Second Level Cache : caches objects across the sessions. If this is turned on objects are searched in cache and if not found db is queried. This cache is used when objects are loaded using their PK. When the user fetches the data from the database for the first time, the data gets stored in the Second Level Cache if it is enabled for that entity. Thereafter, whenever the user requests the data from the second level cache is returned, thus saving network traffic and a database hit.
 
 
-To enable the Second Level Cache, we use the property `hibernate.cache.use_second_level_cache` and set it to **true**
+To enable the Second Level Cache, we use the property
+
+`hibernate.cache.use_second_level_cache` and set it to **true**
 `hibernate.cache.use_query_cacheproperty` is used to select the underlying Cache Vendor which is **EhCacheRegionFactory** in our case
 
 Annotate entity with 
