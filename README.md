@@ -177,9 +177,9 @@ The main purpose of Foreign Key is to preserve releationship between tables
 - Ensures  only valid data is inserted into the foreign key column
 - can only contain valid reference to primary key in other table.
 
-**HQL**  - Query using Objects by Query and Criteria API
+**HQL**  - Query using Objects by **Query** and **Criteria** API
 
-**Query :**
+1. **Query :**
 
 ```java
 getAllStudents(session).forEach(e -> System.out.println(e));
@@ -257,6 +257,47 @@ private static Student getStudentById(Session session,int id) {
 		
 	}
 ```
+
+2. Criteria API
+
+**Query**
+
+`select * from student where first_name ='deep';`
+
+
+```java
+
+Session session = init();
+		Optional<List<Student>> students = getAllStudents(session);
+		if (students.isPresent()) {
+			students.get().forEach(e -> System.out.println(e));
+		}
+		commitAndDestory(session);
+
+private static Optional<List<Student>> getAllStudents(Session session) {
+
+		List<Student> results = new ArrayList<Student>();
+		//Get builder
+		CriteriaBuilder criteriaBuilder = session.getCriteriaBuilder();
+		
+		//Create query for Student entity
+		CriteriaQuery query = criteriaBuilder.createQuery(Student.class);
+		
+		// Apply conditions to CriteriaQuery
+		Root root = query.from(Student.class);
+		query.select(root).where(criteriaBuilder.equal(root.get("firstName"), "deep"));
+		
+		// Add CriteriaQuery with applied conditions to Query 
+		results = session.createQuery(query).getResultList();
+		
+		return CollectionUtils.isEmpty(results) ? Optional.empty() : Optional.of(results);
+
+	}
+
+```
+
+
+
 
 **ReleationShip**
 
