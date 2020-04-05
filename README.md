@@ -194,6 +194,29 @@ private static List<Student> getAllStudents(Session session) {
 	}
 ```
 
+**Using Optional**
+
+```java
+Optional<List<Student>> students = getAllStudents(session);
+		if(students.isPresent()){
+			students.get().forEach(e -> System.out.println(e));
+		}else
+		{
+			System.out.println("empty student list");
+		}
+
+private static Optional<List<Student>> getAllStudents(Session session) {
+		
+		List<Student> results = new ArrayList<Student>();
+		Query query =   (Query) session.createQuery("from Student");
+		results = query.list();
+		return CollectionUtils.isEmpty(results) ? Optional.empty() : Optional.of(results);
+		
+	}
+```
+
+
+
 ```java
 
 String update_firstName = "chiru";
@@ -207,6 +230,31 @@ private static void updateStudent(Session session, String update_firstName, int 
 		query.setInteger("id", id);
 		int records = query.executeUpdate();
 		System.out.println(+records + " row updated");
+	}
+```
+
+**GetById**
+
+```java
+Session session3 = init();
+		Student student = null;
+		try{
+		 student = getStudentById(session3, 16);
+		}catch (NoResultException e){
+			System.out.println("no results");
+		}
+		if ( student != null){
+			System.out.println(student.toString());
+		}
+		commitAndDestory(session3);
+		
+private static Student getStudentById(Session session,int id) {
+		
+		Query query = session.createQuery("from Student where id = :id");
+		query.setParameter("id", id);
+		Student student = (Student) query.getSingleResult();
+		return student;
+		
 	}
 ```
 
