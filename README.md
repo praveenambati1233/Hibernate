@@ -296,6 +296,7 @@ private static Optional<List<Student>> getAllStudents(Session session) {
 
 ```
 
+Refer : https://www.boraji.com/hibernate-5-criteria-query-example
 
 
 
