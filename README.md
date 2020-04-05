@@ -177,7 +177,38 @@ The main purpose of Foreign Key is to preserve releationship between tables
 - Ensures  only valid data is inserted into the foreign key column
 - can only contain valid reference to primary key in other table.
 
-HQL 
+**HQL**  - Query using Objects by Query and Criteria API
+
+**Query :**
+
+```java
+getAllStudents(session).forEach(e -> System.out.println(e));
+
+private static List<Student> getAllStudents(Session session) {
+
+		List<Student> results = new ArrayList<Student>();
+		Query query =   (Query) session.createQuery("from Student");
+		results = query.list();
+		return results;
+
+	}
+```
+
+```java
+
+String update_firstName = "chiru";
+int id = 1;
+updateStudent(session1, update_firstName, id);
+
+private static void updateStudent(Session session, String update_firstName, int id) {
+		
+		Query query = session.createQuery("update Student set firstName = :firstName where id = :id");
+		query.setString("firstName", update_firstName);
+		query.setInteger("id", id);
+		int records = query.executeUpdate();
+		System.out.println(+records + " row updated");
+	}
+```
 
 **ReleationShip**
 
