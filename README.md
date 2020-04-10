@@ -376,6 +376,9 @@ Parent class :
 	private InstructorDetail instructorDetail;
 ```
 
+If insertable=false and updatable=false 
+
+
 
 **OneToMany & ManyToOne**
 
